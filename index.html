@@ -42,6 +42,13 @@
                     <a href="contact.html" class="nav-link">Contact</a>
                 </div>
                 <div class="nav-actions">
+                    <button class="btn-login" id="navLoginBtn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                            <circle cx="12" cy="7" r="4"/>
+                        </svg>
+                        Login
+                    </button>
                     <a href="admin.html" class="nav-link-admin">Admin</a>
                     <button class="cart-btn" id="cartBtn">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -190,9 +197,17 @@
             const loginModal = document.getElementById('loginModal');
             const closeLogin = document.getElementById('closeLogin');
             const checkoutBtn = document.querySelector('.btn-checkout');
+            const navLoginBtn = document.getElementById('navLoginBtn');
             const loginForm = document.getElementById('loginForm');
             const googleBtn = document.querySelector('.btn-google-sso');
             const createAccountLink = document.getElementById('createAccountLink');
+
+            // Open login from nav button
+            if (navLoginBtn) {
+                navLoginBtn.addEventListener('click', () => {
+                    loginModal.classList.add('active');
+                });
+            }
 
             // Open login on checkout
             if (checkoutBtn) {
