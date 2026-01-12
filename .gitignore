@@ -1,0 +1,38 @@
+# Dependencies
+node_modules/
+
+# Azure
+.azure/
+*.publish.xml
+*.PublishSettings
+
+# Environment variables and secrets
+.env
+.env.local
+.env.*.local
+*.txt
+*.ps1
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# Build outputs
+dist/
+build/
+.cache/
+
+# Temporary files
+*.tmp
+.temp/
