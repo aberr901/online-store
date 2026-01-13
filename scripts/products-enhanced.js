@@ -1,6 +1,9 @@
 // Enhanced Products Display with Brands
 // Add to products.js
 
+// Global virtual scroller instance
+let virtualScroller = null;
+
 async function initProductsWithBrands() {
     try {
         // Load brands first
@@ -13,7 +16,21 @@ async function initProductsWithBrands() {
 
         // Load and display products
         const products = await storageService.fetchProducts();
-        displayProducts(products);
+        
+        // Use virtual scroller if available and product count is high
+        if (typeof VirtualProductScroller !== 'undefined' && products.length > 30) {
+            if (!virtualScroller) {
+                virtualScroller = new VirtualProductScroller({
+                    pageSize: 20,
+                    loadMoreThreshold: 500
+                });
+            }
+            virtualScroller.setProducts(products);
+        } else {
+            // Use standard display for smaller catalogs
+            displayProducts(products);
+        }
+        
         populateFilters(products, categories);
         setupFiltering(products);
     } catch (error) {
@@ -281,7 +298,12 @@ function setupFiltering(products) {
             return matchesCategory && matchesBrand && matchesSearch;
         });
 
-        displayProducts(filtered);
+        // Use virtual scroller if available and initialized
+        if (virtualScroller && products.length > 30) {
+            virtualScroller.setProducts(filtered);
+        } else {
+            displayProducts(filtered);
+        }
 
         const resultsCount = document.getElementById('resultsCount');
         if (resultsCount) {

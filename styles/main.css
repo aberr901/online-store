@@ -1855,3 +1855,68 @@ img {
         padding-left: 0;
     }
 }
+
+/* === Virtual Scroller / Lazy Loading === */
+.products-loader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 0;
+    gap: 1rem;
+}
+
+.loader-spinner {
+    width: 48px;
+    height: 48px;
+    border: 4px solid var(--light-gray);
+    border-top-color: var(--primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.products-loader p {
+    color: var(--gray);
+    font-size: 0.95rem;
+}
+
+.product-count {
+    text-align: center;
+    color: var(--gray);
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+    padding: 0.75rem;
+    background: var(--light-gray);
+    border-radius: 8px;
+}
+
+/* Lazy loading image placeholder */
+img.lazy-image {
+    transition: opacity 0.3s ease-in;
+    opacity: 0.5;
+}
+
+img.lazy-image.loaded {
+    opacity: 1;
+}
+
+/* Smooth product card entrance */
+.product-card {
+    opacity: 0;
+    animation: fadeInUp 0.4s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
