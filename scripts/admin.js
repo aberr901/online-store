@@ -253,7 +253,21 @@ class AdminManager {
             this.displayProductsTable();
         } catch (error) {
             console.error('Error saving product:', error);
-            this.showNotification('Failed to save product. Please try again.', 'error');
+            
+            // Provide specific error messages based on error type
+            let errorMessage = 'Failed to save product. Please try again.';
+            
+            if (error.message && error.message.includes('403')) {
+                errorMessage = 'Permission denied. Your account does not have write access to Azure storage. Please contact an administrator.';
+            } else if (error.message && error.message.includes('401')) {
+                errorMessage = 'Authentication failed. Please sign out and sign back in.';
+            } else if (error.message && error.message.includes('Network')) {
+                errorMessage = 'Network error. Please check your internet connection and try again.';
+            } else if (error.message) {
+                errorMessage = `Error: ${error.message}`;
+            }
+            
+            this.showNotification(errorMessage, 'error');
         } finally {
             submitBtn.disabled = false;
             submitBtn.textContent = 'Save Product';
@@ -299,12 +313,24 @@ class AdminManager {
         const product = this.products.find(p => p.id === productId);
         const productName = product ? product.name : 'this product';
         
-        if (!confirm(`Are you sure you want to delete "${productName}"?\n\nThis action cannot be undone.`)) {
-            return;
+        // Use custom confirm dialog instead of browser confirm
+        if (typeof notify !== 'undefined' && notify.confirm) {
+            notify.confirm(
+                `Are you sure you want to delete "${productName}"? This action cannot be undone.`,
+                async () => {
+                    await this.performDelete(productId, product);
+                }
+            );
+        } else {
+            if (!confirm(`Are you sure you want to delete "${productName}"?\n\nThis action cannot be undone.`)) {
+                return;
+            }
+            await this.performDelete(productId, product);
         }
-
+    }
+    
+    async performDelete(productId, product) {
         try {
-            
             // Delete image from storage if exists and is Azure Blob
             if (product?.image && this.isAzureBlobUrl(product.image)) {
                 await storageService.deleteImage(product.image);
@@ -320,7 +346,18 @@ class AdminManager {
             this.displayProductsTable();
         } catch (error) {
             console.error('Error deleting product:', error);
-            this.showNotification('Failed to delete product. Please try again.', 'error');
+            
+            let errorMessage = 'Failed to delete product. Please try again.';
+            
+            if (error.message && error.message.includes('403')) {
+                errorMessage = 'Permission denied. Your account does not have delete access to Azure storage. Please contact an administrator.';
+            } else if (error.message && error.message.includes('401')) {
+                errorMessage = 'Authentication failed. Please sign out and sign back in.';
+            } else if (error.message) {
+                errorMessage = `Error: ${error.message}`;
+            }
+            
+            this.showNotification(errorMessage, 'error');
         }
     }
 
@@ -375,20 +412,34 @@ class AdminManager {
     }
 
     showNotification(message, type = 'success') {
-        const notification = document.createElement('div');
-        notification.className = type === 'error' ? 'error' : 'success';
-        notification.textContent = message;
-        notification.style.position = 'fixed';
-        notification.style.top = '20px';
-        notification.style.right = '20px';
-        notification.style.zIndex = '1001';
-        notification.style.minWidth = '300px';
-        
-        document.body.appendChild(notification);
-        
-        setTimeout(() => {
-            notification.remove();
-        }, 4000);
+        if (typeof notify !== 'undefined') {
+            // Use the global notify system
+            if (type === 'error') {
+                notify.error(message);
+            } else if (type === 'warning') {
+                notify.warning(message);
+            } else if (type === 'info') {
+                notify.info(message);
+            } else {
+                notify.success(message);
+            }
+        } else {
+            // Fallback to simple notification
+            const notification = document.createElement('div');
+            notification.className = type === 'error' ? 'error' : 'success';
+            notification.textContent = message;
+            notification.style.position = 'fixed';
+            notification.style.top = '20px';
+            notification.style.right = '20px';
+            notification.style.zIndex = '1001';
+            notification.style.minWidth = '300px';
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.remove();
+            }, 4000);
+        }
     }
     
     isAzureBlobUrl(url) {

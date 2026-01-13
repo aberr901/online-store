@@ -16,7 +16,12 @@
                 <div class="nav-brand">
                     <h1 class="brand-title">Store Admin</h1>
                 </div>
-                <div class="nav-actions">
+                <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <div class="nav-actions" id="navActions">
                     <span id="userEmail" style="margin-right: 1rem; color: #666;"></span>
                     <a href="index.html" class="nav-link-admin">Back to Store</a>
                     <button id="logoutBtn" class="btn btn-secondary">Logout</button>
@@ -220,11 +225,60 @@
         </div>
     </main>
 
-    <script src="scripts/config.js?v=3"></script>
-    <script src="scripts/storage.js?v=3"></script>
-    <script src="scripts/auth.js?v=3"></script>
-    <script src="scripts/brand-manager.js?v=3"></script>
-    <script src="scripts/category-manager.js?v=3"></script>
-    <script src="scripts/admin.js?v=3"></script>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>All Shop Wholesale - Admin</h3>
+                    <p>Product management system for wholesale operations.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Back to Store</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li>📧 info@allshopwholesale.com</li>
+                        <li>📞 0050946820</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li>VAT: RO50946820</li>
+                        <li>All Shop Wholesale SRL</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 All Shop Wholesale SRL. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="scripts/config.js"></script>
+    <script src="scripts/storage.js"></script>
+    <script src="scripts/notifications.js"></script>
+    <script src="scripts/auth.js"></script>
+    <script src="scripts/brand-manager.js"></script>
+    <script src="scripts/category-manager.js"></script>
+    <script src="scripts/admin.js"></script>
+    <script>
+        // Mobile menu toggle
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const navActions = document.getElementById('navActions');
+        
+        if (mobileMenuToggle) {
+            mobileMenuToggle.addEventListener('click', () => {
+                mobileMenuToggle.classList.toggle('active');
+                navActions.classList.toggle('active');
+            });
+        }
+    </script>
 </body>
 </html>
