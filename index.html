@@ -229,7 +229,7 @@
             if (checkoutBtn) {
                 checkoutBtn.addEventListener('click', (e) => {
                     e.preventDefault();
-                    if (cart.items.length === 0) {
+                    if (!window.cart || window.cart.items.length === 0) {
                         notify.warning('Your cart is empty!');
                         return;
                     }

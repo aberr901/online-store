@@ -137,5 +137,6 @@ class ShoppingCart {
     }
 }
 
-// Initialize cart
+// Initialize cart and make it globally accessible
 const cart = new ShoppingCart();
+window.cart = cart;
