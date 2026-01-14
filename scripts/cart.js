@@ -27,13 +27,15 @@ class ShoppingCart {
                 id: product.id,
                 name: product.name,
                 price: product.price,
-                image: product.image,
+                image: product.imageUrl || product.image,
                 quantity: quantity
             });
         }
         
         this.saveCart();
-        this.showNotification('Product added to cart!');
+        if (typeof notify !== 'undefined') {
+            notify.success('Product added to cart!');
+        }
     }
 
     removeItem(productId) {
@@ -132,23 +134,6 @@ class ShoppingCart {
                 }
             });
         }
-    }
-
-    showNotification(message) {
-        // Simple notification - you can enhance this
-        const notification = document.createElement('div');
-        notification.className = 'success';
-        notification.textContent = message;
-        notification.style.position = 'fixed';
-        notification.style.top = '20px';
-        notification.style.right = '20px';
-        notification.style.zIndex = '1001';
-        
-        document.body.appendChild(notification);
-        
-        setTimeout(() => {
-            notification.remove();
-        }, 3000);
     }
 }
 

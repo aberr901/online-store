@@ -295,12 +295,13 @@ class AdminManager {
                 document.querySelector('input[name="imageType"][value="upload"]').checked = true;
             } else {
                 document.querySelector('input[name="imageType"][value="url"]').checked = true;
-                document.getElementById('productImageUrl').value = product.image;
+                document.getElementById('productImageUrl').value = product.imageUrl || product.image || '';
                 document.getElementById('uploadImageSection').style.display = 'none';
                 document.getElementById('urlImageSection').style.display = 'block';
             }
-            document.getElementById('imagePreview').innerHTML = 
-                `<img src="${storageService.getImageUrl(product.image)}" alt="Current image">`;
+            const imageUrl = product.imageUrl || product.image;
+            document.getElementById('imagePreview').innerHTML = imageUrl ?
+                `<img src="${storageService.getImageUrl(imageUrl)}" alt="Current image">` : '';
         }
 
         document.getElementById('formTitle').textContent = 'Edit Product';
@@ -391,7 +392,7 @@ class AdminManager {
         tbody.innerHTML = products.map(product => `
             <tr>
                 <td>
-                    <img src="${storageService.getImageUrl(product.image)}" 
+                    <img src="${storageService.getImageUrl(product.imageUrl || product.image)}" 
                          alt="${product.name}" 
                          class="product-thumbnail"
                          onerror="this.src='https://via.placeholder.com/50x50?text=No+Image'">
