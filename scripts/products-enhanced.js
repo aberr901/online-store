@@ -74,6 +74,12 @@ function populateNavigationDropdowns(brands, categories) {
                 document.getElementById('brandFilter').value = brandName;
                 document.getElementById('brandFilter').dispatchEvent(new Event('change'));
                 document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
+                
+                // Close mobile menu if open
+                const navMenu = document.getElementById('navMenu');
+                const menuToggle = document.getElementById('mobileMenuToggle');
+                if (navMenu) navMenu.classList.remove('active');
+                if (menuToggle) menuToggle.classList.remove('active');
             });
         });
     }
@@ -93,6 +99,12 @@ function populateNavigationDropdowns(brands, categories) {
                 document.getElementById('categoryFilter').value = category;
                 document.getElementById('categoryFilter').dispatchEvent(new Event('change'));
                 document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
+                
+                // Close mobile menu if open
+                const navMenu = document.getElementById('navMenu');
+                const menuToggle = document.getElementById('mobileMenuToggle');
+                if (navMenu) navMenu.classList.remove('active');
+                if (menuToggle) menuToggle.classList.remove('active');
             });
         });
     }
