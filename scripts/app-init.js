@@ -18,29 +18,35 @@ class AppInitializer {
                 });
             }
 
+            console.log('Initializing app...');
+
             // Initialize notification system
             if (typeof Notification !== 'undefined' && typeof notify === 'undefined') {
                 window.notify = new Notification();
+                console.log('✓ Notification system initialized');
             }
 
             // Initialize cart
             if (typeof ShoppingCart !== 'undefined' && !this.cart) {
                 this.cart = new ShoppingCart();
                 window.cart = this.cart;
+                console.log('✓ Shopping cart initialized');
             }
 
             // Initialize privacy banner
             if (typeof PrivacyBanner !== 'undefined') {
                 const privacyBanner = new PrivacyBanner();
+                console.log('✓ Privacy banner initialized');
             }
 
             // Check authentication state
             this.checkAuthState();
+            console.log('✓ Auth state checked');
 
             this.initialized = true;
-            console.log('App initialized successfully');
+            console.log('✅ App initialization complete!');
         } catch (error) {
-            console.error('Error initializing app:', error);
+            console.error('❌ Error initializing app:', error);
         }
     }
 
@@ -51,13 +57,21 @@ class AppInitializer {
         const adminLink = document.getElementById('adminLink');
 
         if (isAuthenticated && userEmail && navLoginBtn) {
-            const loginText = navLoginBtn.querySelector('span');
+            // Update login button text (handle both with and without span)
+            const loginText = navLoginBtn.textContent.includes('Login') ? navLoginBtn : navLoginBtn.querySelector('span');
             if (loginText) {
-                loginText.textContent = userEmail.split('@')[0];
+                const usernameDisplay = userEmail.split('@')[0];
+                if (navLoginBtn.querySelector('span')) {
+                    navLoginBtn.querySelector('span').textContent = usernameDisplay;
+                } else {
+                    navLoginBtn.childNodes.forEach(node => {
+                        if (node.nodeType === Node.TEXT_NODE && node.textContent.includes('Login')) {
+                            node.textContent = usernameDisplay;
+                        }
+                    });
+                }
             }
-            if (adminLink) {
-                adminLink.style.display = 'block';
-            }
+            console.log('✓ User authenticated:', userEmail);
         }
     }
 }

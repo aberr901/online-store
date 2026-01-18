@@ -1,42 +1,38 @@
 // Reusable Modal Components (Login and Cart)
+// Matches the original store pages (home-kitchen.html, pet-supplies.html)
 class ModalComponent {
     renderLoginModal() {
         return `
     <!-- Login Modal -->
-    <div class="modal" id="loginModal">
-        <div class="modal-content">
-            <button class="modal-close" id="loginClose">&times;</button>
-            <h2>Login to Your Wholesale Account</h2>
-            <p class="modal-subtitle">Access exclusive wholesale pricing and features</p>
-            
-            <form class="login-form" id="loginForm">
-                <div class="form-group">
-                    <label for="loginEmail">Email Address</label>
-                    <input type="email" id="loginEmail" required placeholder="your@email.com">
-                </div>
-                <div class="form-group">
-                    <label for="loginPassword">Password</label>
-                    <input type="password" id="loginPassword" required placeholder="Enter your password">
-                </div>
-                <button type="submit" class="btn btn-primary btn-block">Sign In</button>
-            </form>
-            
-            <div class="login-divider">
-                <span>or</span>
+    <div class="login-modal" id="loginModal">
+        <div class="login-container">
+            <button class="login-close" id="closeLogin">&times;</button>
+            <div class="login-header">
+                <h2>Sign in to All Shop Wholesale</h2>
+                <p>Continue to complete your order</p>
             </div>
-            
-            <button class="btn btn-google" id="googleBtn">
-                <svg width="20" height="20" viewBox="0 0 24 24">
-                    <path fill="currentColor" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-                    <path fill="currentColor" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-                    <path fill="currentColor" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
-                    <path fill="currentColor" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
-                </svg>
-                Sign in with Google
-            </button>
-            
-            <div class="login-footer" style="display: none;">
-                <p>Don't have an account? <a href="#" id="createAccountLink">Contact us to register</a></p>
+            <div class="login-body">
+                <button class="btn-google-sso" id="googleBtn">
+                    <svg width="18" height="18" viewBox="0 0 18 18"><path fill="#4285F4" d="M16.51 8H8.98v3h4.3c-.18 1-.74 1.48-1.6 2.04v2.01h2.6a7.8 7.8 0 0 0 2.38-5.88c0-.57-.05-.66-.15-1.18z"></path><path fill="#34A853" d="M8.98 17c2.16 0 3.97-.72 5.3-1.94l-2.6-2a4.8 4.8 0 0 1-7.18-2.54H1.83v2.07A8 8 0 0 0 8.98 17z"></path><path fill="#FBBC05" d="M4.5 10.52a4.8 4.8 0 0 1 0-3.04V5.41H1.83a8 8 0 0 0 0 7.18l2.67-2.07z"></path><path fill="#EA4335" d="M8.98 4.18c1.17 0 2.23.4 3.06 1.2l2.3-2.3A8 8 0 0 0 1.83 5.4L4.5 7.49a4.77 4.77 0 0 1 4.48-3.3z"></path></svg>
+                    Continue with Google
+                </button>
+                <div class="login-divider">
+                    <span>OR</span>
+                </div>
+                <form class="login-form" id="loginForm">
+                    <div class="form-group">
+                        <label for="loginEmail">Email address</label>
+                        <input type="email" id="loginEmail" placeholder="name@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Password</label>
+                        <input type="password" id="loginPassword" placeholder="Enter your password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+                </form>
+                <div class="login-footer">
+                    <p>Don't have an account? <a href="#" id="createAccountLink">Create account</a></p>
+                </div>
             </div>
         </div>
     </div>
@@ -48,18 +44,22 @@ class ModalComponent {
     <!-- Cart Sidebar -->
     <div class="cart-sidebar" id="cartSidebar">
         <div class="cart-header">
-            <h3>Shopping Cart</h3>
-            <button class="cart-close" id="cartClose">&times;</button>
+            <h2>Shopping Cart</h2>
+            <button class="close-cart" id="closeCart">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+            </button>
         </div>
-        <div class="cart-items" id="cartItemsList">
-            <!-- Cart items will be populated by JavaScript -->
+        <div class="cart-items" id="cartItems">
+            <p class="cart-empty">Your cart is empty</p>
         </div>
         <div class="cart-footer">
             <div class="cart-total">
                 <span>Total:</span>
-                <span class="total-amount" id="cartTotal">€0.00</span>
+                <span class="total-amount" id="cartTotal">$0.00</span>
             </div>
-            <button class="btn btn-primary btn-block">Proceed to Checkout</button>
+            <button class="btn btn-primary btn-checkout">Checkout</button>
         </div>
     </div>
     <div class="cart-overlay" id="cartOverlay"></div>
@@ -80,33 +80,50 @@ class ModalComponent {
         // Login Modal Events
         const navLoginBtn = document.getElementById('navLoginBtn');
         const loginModal = document.getElementById('loginModal');
-        const loginClose = document.getElementById('loginClose');
+        const closeLogin = document.getElementById('closeLogin');
         const loginForm = document.getElementById('loginForm');
         const googleBtn = document.getElementById('googleBtn');
         const createAccountLink = document.getElementById('createAccountLink');
+        const checkoutBtn = document.querySelector('.btn-checkout');
 
         // Cart Sidebar Events
         const cartBtn = document.getElementById('cartBtn');
         const cartSidebar = document.getElementById('cartSidebar');
-        const cartClose = document.getElementById('cartClose');
+        const closeCart = document.getElementById('closeCart');
         const cartOverlay = document.getElementById('cartOverlay');
 
-        // Login button
+        // Open login from nav button
         if (navLoginBtn) {
             navLoginBtn.addEventListener('click', () => {
-                loginModal.classList.add('active');
+                if (loginModal) {
+                    loginModal.classList.add('active');
+                }
+            });
+        }
+
+        // Open login on checkout
+        if (checkoutBtn) {
+            checkoutBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (!window.cart || window.cart.items.length === 0) {
+                    if (typeof notify !== 'undefined') {
+                        notify.warning('Your cart is empty!');
+                    }
+                    return;
+                }
+                if (loginModal) {
+                    loginModal.classList.add('active');
+                }
             });
         }
 
         // Close login modal
-        if (loginClose) {
-            loginClose.addEventListener('click', () => {
+        if (closeLogin && loginModal) {
+            closeLogin.addEventListener('click', () => {
                 loginModal.classList.remove('active');
             });
-        }
-
-        // Close modal on background click
-        if (loginModal) {
+            
+            // Close on background click
             loginModal.addEventListener('click', (e) => {
                 if (e.target === loginModal) {
                     loginModal.classList.remove('active');
@@ -114,25 +131,36 @@ class ModalComponent {
             });
         }
 
-        // Cart button
+        // Cart button - open cart
         if (cartBtn) {
             cartBtn.addEventListener('click', () => {
-                cartSidebar.classList.add('active');
-                cartOverlay.classList.add('active');
+                if (cartSidebar) {
+                    cartSidebar.classList.add('active');
+                }
+                if (cartOverlay) {
+                    cartOverlay.classList.add('active');
+                }
             });
         }
 
         // Close cart
-        if (cartClose) {
-            cartClose.addEventListener('click', () => {
-                cartSidebar.classList.remove('active');
-                cartOverlay.classList.remove('active');
+        if (closeCart) {
+            closeCart.addEventListener('click', () => {
+                if (cartSidebar) {
+                    cartSidebar.classList.remove('active');
+                }
+                if (cartOverlay) {
+                    cartOverlay.classList.remove('active');
+                }
             });
         }
 
+        // Close cart on overlay click
         if (cartOverlay) {
             cartOverlay.addEventListener('click', () => {
-                cartSidebar.classList.remove('active');
+                if (cartSidebar) {
+                    cartSidebar.classList.remove('active');
+                }
                 cartOverlay.classList.remove('active');
             });
         }
@@ -142,27 +170,35 @@ class ModalComponent {
             googleBtn.addEventListener('click', (e) => {
                 e.preventDefault();
                 if (typeof notify !== 'undefined') {
-                    notify.error('No account found with this Google account. Please register for a wholesale account first.');
-                }
-                const loginFooter = document.querySelector('.login-footer');
-                if (loginFooter) {
-                    loginFooter.style.display = 'block';
+                    notify.info('To create a wholesale account, please contact us at info@allshopwholesale.com or call 0050946820');
                 }
             });
         }
 
-        // Login form
+        // Login form submission
         if (loginForm) {
             loginForm.addEventListener('submit', (e) => {
                 e.preventDefault();
                 const email = document.getElementById('loginEmail').value;
+                
+                // Simulate login success (replace with actual authentication)
+                localStorage.setItem('isAuthenticated', 'true');
+                localStorage.setItem('userEmail', email);
+                
                 if (typeof notify !== 'undefined') {
-                    notify.error('No account found for: ' + email + '. Please register for a wholesale account first.');
+                    notify.success('Welcome! You are now signed in.');
                 }
-                const loginFooter = document.querySelector('.login-footer');
-                if (loginFooter) {
-                    loginFooter.style.display = 'block';
+                
+                if (loginModal) {
+                    loginModal.classList.remove('active');
                 }
+                
+                // Update login button
+                if (navLoginBtn) {
+                    const loginText = navLoginBtn.querySelector('span') || navLoginBtn;
+                    loginText.textContent = email.split('@')[0];
+                }
+                
                 loginForm.reset();
             });
         }
@@ -172,7 +208,7 @@ class ModalComponent {
             createAccountLink.addEventListener('click', (e) => {
                 e.preventDefault();
                 if (typeof notify !== 'undefined') {
-                    notify.info('To create a wholesale account, please contact us at info@allshopwholesale.com or call 0050946820. Our team will set up your account and provide login credentials.', 6000);
+                    notify.info('To create a wholesale account, please contact us at info@allshopwholesale.com or call 0050946820', 6000);
                 }
             });
         }
