@@ -59,7 +59,8 @@ async function initProductsWithBrands(department = null) {
             displayProducts(products);
         }
         
-        populateFilters(products, brands, categories);
+        // Pass filtered brands and categories to populateFilters
+        populateFilters(products, filteredBrands, filteredCategories);
         setupFiltering(products);
     } catch (error) {
         console.error('Error initializing products:', error);
