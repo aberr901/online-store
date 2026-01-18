@@ -228,7 +228,6 @@
     </div>
     <div class="cart-overlay" id="cartOverlay"></div>
     
-    <script src="scripts/privacy-banner.js"></script>
     <!-- Login Modal -->
     <div class="login-modal" id="loginModal">
         <div class="login-container">
@@ -262,102 +261,144 @@
             </div>
         </div>
     </div>
-    
+
+    <script src="scripts/privacy-banner.js"></script>
     <script src="scripts/notifications.js"></script>
     <script src="scripts/storage.js"></script>
     <script src="scripts/cart.js"></script>
     <script>
-        // Initialize cart
-        window.cart = new ShoppingCart();
-        
-        // Cart toggle functionality
-        const cartBtn = document.getElementById('cartBtn');
-        const cartSidebar = document.getElementById('cartSidebar');
-        const cartClose = document.getElementById('cartClose');
-        const cartOverlay = document.getElementById('cartOverlay');
-        
-        if (cartBtn) {
-            cartBtn.addEventListener('click', () => {
-                cartSidebar.classList.add('active');
-                cartOverlay.classList.add('active');
-            });
-        }
-        
-        if (cartClose) {
-            cartClose.addEventListener('click', () => {
-                cartSidebar.classList.remove('active');
-                cartOverlay.classList.remove('active');
-            });
-        }
-        
-        if (cartOverlay) {
-            cartOverlay.addEventListener('click', () => {
-                cartSidebar.classList.remove('active');
-                cartOverlay.classList.remove('active');
-            });
-        }
-        
-        // Mobile menu toggle
-        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
-        const navMenu = document.getElementById('navMenu');
-        
-        if (mobileMenuToggle) {
-            mobileMenuToggle.addEventListener('click', () => {
-                mobileMenuToggle.classList.toggle('active');
-                navMenu.classList.toggle('active');
-            });
-        }
-        
-        // Login modal functionality
-        const navLoginBtn = document.getElementById('navLoginBtn');
-        const loginModal = document.getElementById('loginModal');
-        const closeLogin = document.getElementById('closeLogin');
-        const googleBtn = document.getElementById('googleBtn');
-        const loginForm = document.getElementById('loginForm');
-        const createAccountLink = document.getElementById('createAccountLink');
-        
-        if (navLoginBtn) {
-            navLoginBtn.addEventListener('click', () => {
-                loginModal.classList.add('active');
-            });
-        }
-        
-        if (closeLogin) {
-            closeLogin.addEventListener('click', () => {
-                loginModal.classList.remove('active');
-            });
-        }
-        
-        loginModal?.addEventListener('click', (e) => {
-            if (e.target === loginModal) {
-                loginModal.classList.remove('active');
+        document.addEventListener('DOMContentLoaded', () => {
+            // Mobile menu toggle
+            const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+            const navMenu = document.getElementById('navMenu');
+            
+            if (mobileMenuToggle) {
+                mobileMenuToggle.addEventListener('click', () => {
+                    mobileMenuToggle.classList.toggle('active');
+                    navMenu.classList.toggle('active');
+                });
+            }
+
+            // Check authentication status
+            const navLoginBtn = document.getElementById('navLoginBtn');
+            const adminLink = document.getElementById('adminLink');
+            
+            const isAuthenticated = localStorage.getItem('isAuthenticated');
+            const userEmail = localStorage.getItem('userEmail');
+            
+            if (isAuthenticated && userEmail) {
+                if (navLoginBtn) {
+                    navLoginBtn.textContent = userEmail.split('@')[0];
+                }
+                if (adminLink) {
+                    adminLink.style.display = 'block';
+                }
+            }
+
+            // Initialize cart
+            if (!window.cart) {
+                window.cart = new ShoppingCart();
+            }
+
+            // Cart toggle functionality
+            const cartBtn = document.getElementById('cartBtn');
+            const cartSidebar = document.getElementById('cartSidebar');
+            const cartClose = document.getElementById('cartClose');
+            const cartOverlay = document.getElementById('cartOverlay');
+            
+            if (cartBtn) {
+                cartBtn.addEventListener('click', () => {
+                    cartSidebar.classList.add('active');
+                    cartOverlay.classList.add('active');
+                });
+            }
+            
+            if (cartClose) {
+                cartClose.addEventListener('click', () => {
+                    cartSidebar.classList.remove('active');
+                    cartOverlay.classList.remove('active');
+                });
+            }
+            
+            if (cartOverlay) {
+                cartOverlay.addEventListener('click', () => {
+                    cartSidebar.classList.remove('active');
+                    cartOverlay.classList.remove('active');
+                });
+            }
+
+            // Login modal functionality
+            const loginModal = document.getElementById('loginModal');
+            const closeLogin = document.getElementById('closeLogin');
+            
+            if (navLoginBtn) {
+                navLoginBtn.addEventListener('click', () => {
+                    if (!isAuthenticated) {
+                        loginModal.classList.add('active');
+                    }
+                });
+            }
+            
+            if (closeLogin) {
+                closeLogin.addEventListener('click', () => {
+                    loginModal.classList.remove('active');
+                });
+            }
+            
+            if (loginModal) {
+                loginModal.addEventListener('click', (e) => {
+                    if (e.target === loginModal) {
+                        loginModal.classList.remove('active');
+                    }
+                });
+            }
+
+            // Login form submit
+            const loginForm = document.getElementById('loginForm');
+            if (loginForm) {
+                loginForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const email = document.getElementById('loginEmail').value;
+                    localStorage.setItem('isAuthenticated', 'true');
+                    localStorage.setItem('userEmail', email);
+                    notify.success('Signed in successfully!');
+                    loginModal.classList.remove('active');
+                    if (navLoginBtn) {
+                        navLoginBtn.textContent = email.split('@')[0];
+                    }
+                    if (adminLink) {
+                        adminLink.style.display = 'block';
+                    }
+                });
+            }
+
+            // Google SSO
+            const googleBtn = document.getElementById('googleBtn');
+            if (googleBtn) {
+                googleBtn.addEventListener('click', () => {
+                    const email = 'user@wholesale.com';
+                    localStorage.setItem('isAuthenticated', 'true');
+                    localStorage.setItem('userEmail', email);
+                    notify.success('Signed in with Google successfully!');
+                    loginModal.classList.remove('active');
+                    if (navLoginBtn) {
+                        navLoginBtn.textContent = email.split('@')[0];
+                    }
+                    if (adminLink) {
+                        adminLink.style.display = 'block';
+                    }
+                });
+            }
+
+            // Create account link
+            const createAccountLink = document.getElementById('createAccountLink');
+            if (createAccountLink) {
+                createAccountLink.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    notify.info('To create a wholesale account, please contact us at info@allshopwholesale.com or call 0050946820.', 6000);
+                });
             }
         });
-        
-        if (googleBtn) {
-            googleBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                notify.error('No account found with this Google account. Please register for a wholesale account first.');
-                document.querySelector('.login-footer').style.display = 'block';
-            });
-        }
-        
-        if (loginForm) {
-            loginForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                const email = document.getElementById('loginEmail').value;
-                notify.error('No account found for: ' + email + '. Please register for a wholesale account first.');
-                document.querySelector('.login-footer').style.display = 'block';
-                loginForm.reset();
-            });
-        }
-        
-        if (createAccountLink) {
-            createAccountLink.addEventListener('click', (e) => {
-                e.preventDefault();
-                notify.info('To create a wholesale account, please contact us at info@allshopwholesale.com or call 0050946820. Our team will set up your account and provide login credentials.', 6000);
-            });
-        }
     </script>
 </body>
 </html>
