@@ -359,6 +359,8 @@
             // Check authentication status
             const navLoginBtn = document.getElementById('navLoginBtn');
             const adminLink = document.getElementById('adminLink');
+            const mobileLoginBtn = document.getElementById('mobileLoginBtn');
+            const mobileAdminLink = document.getElementById('mobileAdminLink');
             
             const isAuthenticated = localStorage.getItem('isAuthenticated');
             const userEmail = localStorage.getItem('userEmail');
@@ -424,8 +426,6 @@
             // Login modal
             const loginModal = document.getElementById('loginModal');
             const closeLogin = document.getElementById('closeLogin');
-            const mobileLoginBtn = document.getElementById('mobileLoginBtn');
-            const mobileAdminLink = document.getElementById('mobileAdminLink');
 
             if (navLoginBtn) {
                 navLoginBtn.addEventListener('click', () => {
