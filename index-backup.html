@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Shop Wholesale - Premium Wholesale Products for Retailers & Businesses</title>
+    
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://api.dicebear.com/7.x/shapes/png?seed=allshop&size=32&backgroundColor=2c3e50">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://api.dicebear.com/7.x/shapes/png?seed=allshop&size=16&backgroundColor=2c3e50">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://api.dicebear.com/7.x/shapes/png?seed=allshop&size=180&backgroundColor=2c3e50">
+    <meta name="theme-color" content="#2c3e50">
+    
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/animations.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="container">
+                <div class="nav-brand">
+                    <a href="index.html">
+                        <h1 class="brand-title">All Shop Wholesale</h1>
+                        <p class="brand-tagline">Wholesale Solutions for Your Business</p>
+                    </a>
+                </div>
+                <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <div class="nav-menu" id="navMenu">
+                    <a href="index.html" class="nav-link">Home</a>
+                    
+                    <div class="nav-dropdown">
+                        <a href="#products" class="nav-link">Categories</a>
+                        <div class="dropdown-menu" id="categoriesDropdown">
+                            <!-- Categories will be loaded dynamically -->
+                        </div>
+                    </div>
+                    
+                    <div class="nav-dropdown">
+                        <a href="#brands" class="nav-link">Brands</a>
+                        <div class="dropdown-menu brands-dropdown" id="brandsDropdown">
+                            <!-- Brands will be loaded dynamically -->
+                        </div>
+                    </div>
+                    
+                    <a href="about.html" class="nav-link">About Us</a>
+                    <a href="contact.html" class="nav-link">Contact</a>
+                </div>
+                <div class="nav-actions">
+                    <button class="btn-login" id="navLoginBtn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                            <circle cx="12" cy="7" r="4"/>
+                        </svg>
+                        Login
+                    </button>
+                    <a href="admin.html" class="nav-link-admin">Admin</a>
+                    <button class="cart-btn" id="cartBtn">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+                        </svg>
+                        <span class="cart-count" id="cartCount">0</span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-background"></div>
+        <div class="hero-content">
+            <h2 class="hero-title">All Shop Wholesale</h2>
+            <p class="hero-subtitle">Premium Wholesale Products for Retailers & Businesses</p>
+            <div class="hero-buttons">
+                <a href="#products" class="btn btn-primary">Browse Catalog</a>
+                <a href="#brandsSection" class="btn btn-secondary-hero">View Brands</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Brands Showcase -->
+    <section class="brands-section" id="brandsSection">
+        <div class="container">
+            <h3 class="section-title">Featured Brands</h3>
+            <div class="brands-grid" id="brandsGrid">
+                <!-- Brands will be loaded dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Filters and Products -->
+    <section class="products-section" id="products">
+        <div class="container">
+            <div class="filters-bar">
+                <div class="filters-group">
+                    <div class="filter-item">
+                        <label for="categoryFilter">Category</label>
+                        <select id="categoryFilter" class="filter-select">
+                            <option value="">All Categories</option>
+                        </select>
+                    </div>
+                    <div class="filter-item">
+                        <label for="brandFilter">Brand</label>
+                        <select id="brandFilter" class="filter-select">
+                            <option value="">All Brands</option>
+                        </select>
+                    </div>
+                    <div class="filter-item search-filter">
+                        <input type="text" id="searchInput" class="search-input" placeholder="Search products...">
+                        <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="results-count" id="resultsCount"></div>
+            </div>
+
+            <div class="products-grid" id="productsGrid">
+                <!-- Products will be loaded here dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h2>Shopping Cart</h2>
+            <button class="close-cart" id="closeCart">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+            </button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <p class="cart-empty">Your cart is empty</p>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span class="total-amount" id="cartTotal">$0.00</span>
+            </div>
+            <button class="btn btn-primary btn-checkout">Checkout</button>
+        </div>
+    </div>
+    <div class="cart-overlay" id="cartOverlay"></div>
+
+    <!-- Login Modal -->
+    <div class="login-modal" id="loginModal">
+        <div class="login-container">
+            <button class="login-close" id="closeLogin">&times;</button>
+            <div class="login-header">
+                <h2>Sign in to All Shop Wholesale</h2>
+                <p>Continue to complete your order</p>
+            </div>
+            <div class="login-body">
+                <button class="btn-google-sso">
+                    <svg width="18" height="18" viewBox="0 0 18 18"><path fill="#4285F4" d="M16.51 8H8.98v3h4.3c-.18 1-.74 1.48-1.6 2.04v2.01h2.6a7.8 7.8 0 0 0 2.38-5.88c0-.57-.05-.66-.15-1.18z"></path><path fill="#34A853" d="M8.98 17c2.16 0 3.97-.72 5.3-1.94l-2.6-2a4.8 4.8 0 0 1-7.18-2.54H1.83v2.07A8 8 0 0 0 8.98 17z"></path><path fill="#FBBC05" d="M4.5 10.52a4.8 4.8 0 0 1 0-3.04V5.41H1.83a8 8 0 0 0 0 7.18l2.67-2.07z"></path><path fill="#EA4335" d="M8.98 4.18c1.17 0 2.23.4 3.06 1.2l2.3-2.3A8 8 0 0 0 1.83 5.4L4.5 7.49a4.77 4.77 0 0 1 4.48-3.3z"></path></svg>
+                    Continue with Google
+                </button>
+                <div class="login-divider">
+                    <span>OR</span>
+                </div>
+                <form class="login-form" id="loginForm">
+                    <div class="form-group">
+                        <label for="loginEmail">Email address</label>
+                        <input type="email" id="loginEmail" placeholder="name@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Password</label>
+                        <input type="password" id="loginPassword" placeholder="Enter your password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+                </form>
+                <div class="login-footer">
+                    <p>Don't have an account? <a href="#" id="createAccountLink">Create account</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts/config.js?v=3"></script>
+    <script src="scripts/storage.js?v=3"></script>
+    <script src="scripts/notifications.js"></script>
+    <script src="scripts/privacy-banner.js"></script>
+    <script src="scripts/cart.js?v=3"></script>
+    <script src="scripts/virtual-scroller.js"></script>
+    <script src="scripts/products-enhanced.js?v=3"></script>
+    <script>
+        // Mobile menu toggle
+        document.addEventListener('DOMContentLoaded', () => {
+            // Check if mobile toggle exists
+            const menuToggle = document.querySelector('.mobile-menu-toggle');
+            const navMenu = document.querySelector('.nav-menu');
+            
+            if (menuToggle && navMenu) {
+                menuToggle.addEventListener('click', () => {
+                    navMenu.classList.toggle('active');
+                    menuToggle.classList.toggle('active');
+                });
+            }
+
+            // Login modal handlers
+            const loginModal = document.getElementById('loginModal');
+            const closeLogin = document.getElementById('closeLogin');
+            const checkoutBtn = document.querySelector('.btn-checkout');
+            const navLoginBtn = document.getElementById('navLoginBtn');
+            const loginForm = document.getElementById('loginForm');
+            const googleBtn = document.querySelector('.btn-google-sso');
+            const createAccountLink = document.getElementById('createAccountLink');
+
+            // Open login from nav button
+            if (navLoginBtn) {
+                navLoginBtn.addEventListener('click', () => {
+                    loginModal.classList.add('active');
+                });
+            }
+
+            // Open login on checkout
+            if (checkoutBtn) {
+                checkoutBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    if (!window.cart || window.cart.items.length === 0) {
+                        notify.warning('Your cart is empty!');
+                        return;
+                    }
+                    loginModal.classList.add('active');
+                });
+            }
+
+            // Close login modal
+            if (closeLogin) {
+                closeLogin.addEventListener('click', () => {
+                    loginModal.classList.remove('active');
+                });
+            }
+
+            // Close on outside click
+            loginModal?.addEventListener('click', (e) => {
+                if (e.target === loginModal) {
+                    loginModal.classList.remove('active');
+                }
+            });
+
+            // Fake Google SSO
+            if (googleBtn) {
+                googleBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    notify.error('No account found with this Google account. Please register for a wholesale account first.');
+                    // Show create account message
+                    document.querySelector('.login-footer').style.display = 'block';
+                });
+            }
+
+            // Fake email login
+            if (loginForm) {
+                loginForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const email = document.getElementById('loginEmail').value;
+                    notify.error('No account found for: ' + email + '. Please register for a wholesale account first.');
+                    // Show create account message
+                    document.querySelector('.login-footer').style.display = 'block';
+                    loginForm.reset();
+                });
+            }
+
+            // Create account link
+            if (createAccountLink) {
+                createAccountLink.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    notify.info('To create a wholesale account, please contact us at info@allshopwholesale.com or call 0050946820. Our team will set up your account and provide login credentials.', 6000);
+                });
+            }
+        });
+    </script>
+    
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>All Shop Wholesale</h3>
+                    <p>Your trusted partner in premium wholesale products for businesses across Romania and Europe.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="admin.html">Admin</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li>📧 info@allshopwholesale.com</li>
+                        <li>📞 0050946820</li>
+                        <li>📍 București, România</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li>VAT: RO50946820</li>
+                        <li>All Shop Wholesale SRL</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 All Shop Wholesale SRL. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

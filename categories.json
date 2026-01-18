@@ -1,8 +1,12 @@
 [
-  {"id": "cat_001", "name": "Small Appliances", "description": "Compact kitchen and household appliances"},
-  {"id": "cat_002", "name": "Large Appliances", "description": "Washing machines, dryers, dishwashers, ovens"},
-  {"id": "cat_003", "name": "Kitchen Appliances", "description": "Cooktops, ovens, refrigerators, dishwashers"},
-  {"id": "cat_004", "name": "Laundry Appliances", "description": "Washing machines and dryers"},
-  {"id": "cat_005", "name": "Cooking Appliances", "description": "Ovens, cooktops, and ranges"},
-  {"id": "cat_006", "name": "Cooling & Freezing", "description": "Refrigerators and freezers"}
+  {"id": "cat_001", "name": "Small Appliances", "description": "Compact kitchen and household appliances", "department": "home-kitchen"},
+  {"id": "cat_002", "name": "Large Appliances", "description": "Washing machines, dryers, dishwashers, ovens", "department": "home-kitchen"},
+  {"id": "cat_003", "name": "Kitchen Appliances", "description": "Cooktops, ovens, refrigerators, dishwashers", "department": "home-kitchen"},
+  {"id": "cat_004", "name": "Laundry Appliances", "description": "Washing machines and dryers", "department": "home-kitchen"},
+  {"id": "cat_005", "name": "Cooking Appliances", "description": "Ovens, cooktops, and ranges", "department": "home-kitchen"},
+  {"id": "cat_006", "name": "Cooling & Freezing", "description": "Refrigerators and freezers", "department": "home-kitchen"},
+  {"id": "cat_007", "name": "Pet Food", "description": "Premium pet food and nutrition products", "department": "pet-supplies"},
+  {"id": "cat_008", "name": "Pet Toys", "description": "Interactive toys and entertainment for pets", "department": "pet-supplies"},
+  {"id": "cat_009", "name": "Pet Accessories", "description": "Collars, leashes, beds, and pet care accessories", "department": "pet-supplies"},
+  {"id": "cat_010", "name": "Pet Health & Grooming", "description": "Grooming supplies and health care products", "department": "pet-supplies"}
 ]

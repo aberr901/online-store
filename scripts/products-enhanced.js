@@ -3,20 +3,39 @@
 
 // Global virtual scroller instance
 let virtualScroller = null;
+let currentDepartment = null; // Store current department filter
 
-async function initProductsWithBrands() {
+async function initProductsWithBrands(department = null) {
     try {
+        currentDepartment = department;
+        
         // Load brands first
         const brands = await storageService.fetchBrands();
-        displayBrands(brands);
         
         // Load categories
         const categories = await storageService.fetchCategories();
-        populateNavigationDropdowns(brands, categories);
-
-        // Load and display products
-        const products = await storageService.fetchProducts();
         
+        // Filter categories by department if specified
+        const filteredCategories = department 
+            ? categories.filter(cat => cat.department === department)
+            : categories;
+        
+        // Load and display products
+        let products = await storageService.fetchProducts();
+        
+        // Filter products by department through their categories
+        if (department && filteredCategories.length > 0) {
+            const categoryIds = filteredCategories.map(cat => cat.id);
+            products = products.filter(p => categoryIds.includes(p.categoryId));
+        }
+        
+        // Filter brands to show only those with products in this department
+        const productBrandNames = [...new Set(products.map(p => p.brand).filter(Boolean))];
+        const filteredBrands = brands.filter(brand => productBrandNames.includes(brand.name));
+        
+        displayBrands(filteredBrands);
+        populateNavigationDropdowns(filteredBrands, filteredCategories);
+
         // Use virtual scroller if available and product count is high
         if (typeof VirtualProductScroller !== 'undefined' && products.length > 30) {
             if (!virtualScroller) {
@@ -343,7 +362,11 @@ window.cart = null;
 
 document.addEventListener('DOMContentLoaded', () => {
     window.cart = new ShoppingCart();
-    initProductsWithBrands();
+    
+    // Get department from body data attribute if set
+    const department = document.body.getAttribute('data-department');
+    initProductsWithBrands(department);
+    
     setupCartToggle();
 });
 

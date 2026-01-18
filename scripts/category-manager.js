@@ -45,8 +45,14 @@ class CategoryManager {
         }
 
         grid.innerHTML = this.categories.map(category => {
+            const departmentLabel = category.department === 'home-kitchen' ? 'Home & Kitchen' : 
+                                   category.department === 'pet-supplies' ? 'Pet Supplies' : 'No Department';
+            const departmentColor = category.department === 'home-kitchen' ? '#3498db' : '#e74c3c';
+            
             return '<div class="category-card-admin">' +
                 '<h3>' + category.name + '</h3>' +
+                (category.description ? '<p style="color: #666; font-size: 0.9rem; margin: 0.5rem 0;">' + category.description + '</p>' : '') +
+                '<span style="display: inline-block; padding: 0.25rem 0.75rem; background: ' + departmentColor + '; color: white; border-radius: 12px; font-size: 0.75rem; margin-top: 0.5rem;">' + departmentLabel + '</span>' +
                 '<div class="action-buttons">' +
                 '<button class="btn-edit" onclick="categoryManager.editCategory(\'' + category.id + '\')" title="Edit category">Edit</button>' +
                 '<button class="btn-delete" onclick="categoryManager.deleteCategory(\'' + category.id + '\')" title="Delete category">Delete</button>' +
@@ -72,11 +78,15 @@ class CategoryManager {
         e.preventDefault();
 
         const categoryName = document.getElementById('categoryName').value;
+        const categoryDescription = document.getElementById('categoryDescription').value;
+        const categoryDepartment = document.getElementById('categoryDepartment').value;
 
         try {
             const categoryData = {
                 id: this.currentEditingCategoryId || this.generateCategoryId(),
-                name: categoryName
+                name: categoryName,
+                description: categoryDescription,
+                department: categoryDepartment
             };
 
             // Update or add category
@@ -113,6 +123,8 @@ class CategoryManager {
 
         this.currentEditingCategoryId = categoryId;
         document.getElementById('categoryName').value = category.name;
+        document.getElementById('categoryDescription').value = category.description || '';
+        document.getElementById('categoryDepartment').value = category.department || '';
         document.getElementById('categoryFormTitle').textContent = 'Edit Category';
 
         // Scroll to form
