@@ -29,15 +29,15 @@ class FooterComponent {
                     <h4>Contact</h4>
                     <ul class="contact-list">
                         <li><span class="footer-icon">✉</span> info@allshopwholesale.com</li>
-                        <li><span class="footer-icon">☎</span> 0050946820</li>
+                        <li><span class="footer-icon">☎</span> +40 50 946 820</li>
                         <li><span class="footer-icon">⚐</span> București, România</li>
                     </ul>
                 </div>
                 <div class="footer-section">
                     <h4>Legal</h4>
                     <ul>
-                        <li>VAT: RO50946820</li>
                         <li>All Shop Wholesale SRL</li>
+                        <li>Serving retailers across the EU</li>
                     </ul>
                 </div>
             </div>

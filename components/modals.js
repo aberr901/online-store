@@ -57,7 +57,7 @@ class ModalComponent {
         <div class="cart-footer">
             <div class="cart-total">
                 <span>Total:</span>
-                <span class="total-amount" id="cartTotal">$0.00</span>
+                <span class="total-amount" id="cartTotal">€0.00</span>
             </div>
             <button class="btn btn-primary btn-checkout">Checkout</button>
         </div>
@@ -170,7 +170,7 @@ class ModalComponent {
             googleBtn.addEventListener('click', (e) => {
                 e.preventDefault();
                 if (typeof notify !== 'undefined') {
-                    notify.info('To create a wholesale account, please contact us at info@allshopwholesale.com or call 0050946820');
+                    notify.info('To create a wholesale account, please contact us at info@allshopwholesale.com or call +40 50 946 820');
                 }
             });
         }
@@ -208,7 +208,7 @@ class ModalComponent {
             createAccountLink.addEventListener('click', (e) => {
                 e.preventDefault();
                 if (typeof notify !== 'undefined') {
-                    notify.info('To create a wholesale account, please contact us at info@allshopwholesale.com or call 0050946820', 6000);
+                    notify.info('To create a wholesale account, please contact us at info@allshopwholesale.com or call +40 50 946 820', 6000);
                 }
             });
         }

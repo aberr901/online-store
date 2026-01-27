@@ -83,7 +83,7 @@ class ShoppingCart {
 
         if (this.items.length === 0) {
             cartItemsContainer.innerHTML = '<div class="empty-cart">Your cart is empty</div>';
-            if (cartTotal) cartTotal.textContent = '$0.00';
+            if (cartTotal) cartTotal.textContent = '€0.00';
             return;
         }
 
@@ -92,7 +92,7 @@ class ShoppingCart {
                 <img src="${storageService.getImageUrl(item.image)}" alt="${item.name}" class="cart-item-image">
                 <div class="cart-item-info">
                     <div class="cart-item-name">${item.name}</div>
-                    <div class="cart-item-price">$${item.price.toFixed(2)}</div>
+                    <div class="cart-item-price">€${item.price.toFixed(2)}</div>
                     <div class="cart-item-quantity">
                         <button onclick="cart.updateQuantity('${item.id}', ${item.quantity - 1})">-</button>
                         <span>${item.quantity}</span>
@@ -104,7 +104,7 @@ class ShoppingCart {
         `).join('');
 
         if (cartTotal) {
-            cartTotal.textContent = `$${this.getTotal().toFixed(2)}`;
+            cartTotal.textContent = `€${this.getTotal().toFixed(2)}`;
         }
     }
 
