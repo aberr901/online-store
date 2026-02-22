@@ -1,5 +1,8 @@
 # Online Store - Setup Instructions
 
+> 📖 **For complete technical documentation**, see [ARCHITECTURE.md](./ARCHITECTURE.md)  
+> This guide covers basic setup. For details on how products are stored, loaded, and managed, refer to the architecture documentation.
+
 ## Local Development Setup
 
 1. **Clone the repository**
@@ -64,3 +67,15 @@ Create `config.js` on the server after deployment.
 1. Never commit `scripts/config.js`
 2. Use `scripts/config.template.js` as reference
 3. Keep sensitive credentials local only
+
+## Documentation
+
+- **[ARCHITECTURE.md](./ARCHITECTURE.md)** - Complete technical documentation including:
+  - Philosophy and design decisions
+  - Storage layer architecture (Azure Blob Storage)
+  - Data flow diagrams
+  - Admin management system
+  - Authentication and security model
+  - Caching strategy
+- **[README.md](./README.md)** - Project overview and quick start
+- **[SETUP-ENTRA-ID.md](./SETUP-ENTRA-ID.md)** - Detailed Entra ID setup guide
