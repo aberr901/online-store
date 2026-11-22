@@ -110,10 +110,16 @@ class ShoppingCart {
 
     initializeEventListeners() {
         // Open cart sidebar
-        const cartIcon = document.querySelector('.cart-icon');
-        if (cartIcon) {
-            cartIcon.addEventListener('click', () => {
-                document.getElementById('cartSidebar').classList.add('open');
+        const cartBtn = document.getElementById('cartBtn');
+        if (cartBtn) {
+            cartBtn.addEventListener('click', () => {
+                const cartSidebar = document.getElementById('cartSidebar');
+                const cartOverlay = document.getElementById('cartOverlay');
+                if (cartSidebar) {
+                    cartSidebar.classList.add('active'); // Keep for legacy
+                    cartSidebar.classList.add('open');   // For new theme
+                }
+                if (cartOverlay) cartOverlay.classList.add('active');
             });
         }
 
@@ -121,17 +127,26 @@ class ShoppingCart {
         const closeCart = document.getElementById('closeCart');
         if (closeCart) {
             closeCart.addEventListener('click', () => {
-                document.getElementById('cartSidebar').classList.remove('open');
+                const cartSidebar = document.getElementById('cartSidebar');
+                const cartOverlay = document.getElementById('cartOverlay');
+                if (cartSidebar) {
+                    cartSidebar.classList.remove('active');
+                    cartSidebar.classList.remove('open');
+                }
+                if (cartOverlay) cartOverlay.classList.remove('active');
             });
         }
 
         // Close cart when clicking outside
-        const cartSidebar = document.getElementById('cartSidebar');
-        if (cartSidebar) {
-            document.addEventListener('click', (e) => {
-                if (!cartSidebar.contains(e.target) && !e.target.closest('.cart-icon')) {
+        const cartOverlay = document.getElementById('cartOverlay');
+        if (cartOverlay) {
+            cartOverlay.addEventListener('click', () => {
+                const cartSidebar = document.getElementById('cartSidebar');
+                if (cartSidebar) {
+                    cartSidebar.classList.remove('active');
                     cartSidebar.classList.remove('open');
                 }
+                cartOverlay.classList.remove('active');
             });
         }
     }

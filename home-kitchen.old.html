@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home & Kitchen - All Shop Wholesale</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/animations.css">
+    <script>
+        // Set department context before loading scripts
+        window.CURRENT_DEPARTMENT = 'home-kitchen';
+    </script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="container">
+                <div class="nav-brand">
+                    <a href="index.html">
+                        <h1 class="brand-title">All Shop Wholesale</h1>
+                    </a>
+                </div>
+                <div class="nav-menu">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="home-kitchen.html" class="nav-link active">🏠 Home & Kitchen</a>
+                    <a href="pet-products.html" class="nav-link">🐾 Pet Products</a>
+                    <a href="about.html" class="nav-link">About</a>
+                    <a href="contact.html" class="nav-link">Contact</a>
+                </div>
+                <div class="nav-actions">
+                    <a href="admin.html" class="nav-link-admin">Admin</a>
+                    <button class="cart-btn" id="cartBtn">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+                        </svg>
+                        <span class="cart-count" id="cartCount">0</span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Department Hero -->
+    <section class="department-hero">
+        <div class="container">
+            <h1><span class="department-icon">🏠</span> Home & Kitchen</h1>
+            <p>From washing machines and dishwashers to kitchen gadgets, utensils, and drinkware</p>
+        </div>
+    </section>
+
+    <!-- Brands Section -->
+    <section class="brands-section" id="brands">
+        <div class="container">
+            <h2 class="section-title">Featured Brands</h2>
+            <div class="brands-carousel" id="brandsCarousel">
+                <!-- Brands will be loaded dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products-section" id="products">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Our Products</h2>
+                <p class="products-count" id="productsCount">Loading products...</p>
+            </div>
+
+            <!-- Filters -->
+            <div class="filters-bar">
+                <div class="filter-group">
+                    <label for="categoryFilter">Category:</label>
+                    <select id="categoryFilter" class="filter-select">
+                        <option value="">All Categories</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="brandFilter">Brand:</label>
+                    <select id="brandFilter" class="filter-select">
+                        <option value="">All Brands</option>
+                    </select>
+                </div>
+                <div class="filter-group search-group">
+                    <input type="search" id="searchInput" class="search-input" placeholder="Search products...">
+                </div>
+            </div>
+
+            <div class="results-info">
+                <p id="resultsCount">Showing all products</p>
+            </div>
+
+            <!-- Products Grid -->
+            <div class="products-grid" id="productsGrid">
+                <!-- Products will be loaded dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h2>Shopping Cart</h2>
+            <button class="close-cart" id="closeCart">&times;</button>
+        </div>
+        <div class="cart-body" id="cartItems">
+            <p class="empty-cart">Your cart is empty</p>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cartTotal">$0.00</span>
+            </div>
+            <button class="btn-checkout">Proceed to Checkout</button>
+        </div>
+    </div>
+    <div class="cart-overlay" id="cartOverlay"></div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 All Shop Wholesale. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="scripts/config.js?v=4"></script>
+    <script src="scripts/storage.js?v=4"></script>
+    <script src="scripts/notifications.js"></script>
+    <script src="scripts/privacy-banner.js"></script>
+    <script src="scripts/cart.js?v=4"></script>
+    <script src="scripts/virtual-scroller.js"></script>
+    <script src="scripts/products-enhanced.js?v=4"></script>
+</body>
+</html>

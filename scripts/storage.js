@@ -4,7 +4,9 @@ class StorageService {
         this.productsFileName = 'products.json';
         this.brandsFileName = 'brands.json';
         this.categoriesFileName = 'categories.json';
+        this.departmentsFileName = 'departments.json';
         this.CACHE_TTL = 3600000; // 1 hour in milliseconds
+        this.useLocalFiles = false; // Use Azure storage
     }
 
     /**
@@ -65,7 +67,7 @@ class StorageService {
     }
 
     /**
-     * Fetch all categories from Azure Blob Storage
+     * Fetch all categories from Azure Blob Storage or local file
      */
     async fetchCategories() {
         // Check cache first
@@ -76,7 +78,11 @@ class StorageService {
         }
 
         try {
-            const url = AZURE_CONFIG.getBlobUrl(AZURE_CONFIG.dataContainerName, this.categoriesFileName);
+            // Use local file if flag is set
+            const url = this.useLocalFiles ? 
+                this.categoriesFileName : 
+                AZURE_CONFIG.getBlobUrl(AZURE_CONFIG.dataContainerName, this.categoriesFileName);
+            
             const response = await fetch(url);
             
             if (!response.ok) {
@@ -153,7 +159,7 @@ class StorageService {
     }
 
     /**
-     * Fetch all brands from Azure Blob Storage
+     * Fetch all brands from Azure Blob Storage or local file
      */
     async fetchBrands() {
         // Check cache first
@@ -164,7 +170,11 @@ class StorageService {
         }
 
         try {
-            const url = AZURE_CONFIG.getBlobUrl(AZURE_CONFIG.dataContainerName, this.brandsFileName);
+            // Use local file if flag is set
+            const url = this.useLocalFiles ? 
+                this.brandsFileName : 
+                AZURE_CONFIG.getBlobUrl(AZURE_CONFIG.dataContainerName, this.brandsFileName);
+            
             const response = await fetch(url);
             
             if (!response.ok) {
@@ -226,7 +236,69 @@ class StorageService {
     }
 
     /**
-     * Fetch all products from Azure Blob Storage
+     * Fetch all departments
+     */
+    async fetchDepartments() {
+        // Check cache first
+        const cachedDepartments = this.getCachedData('departments_cache');
+        if (cachedDepartments) {
+            console.log('Using cached departments');
+            return cachedDepartments;
+        }
+
+        try {
+            const url = this.useLocalFiles ? 
+                this.departmentsFileName : 
+                AZURE_CONFIG.getBlobUrl(AZURE_CONFIG.dataContainerName, this.departmentsFileName);
+            
+            const response = await fetch(url);
+            
+            if (!response.ok) {
+                if (response.status === 404) {
+                    console.log('Departments file not found, returning defaults');
+                    const defaults = this.getDefaultDepartments();
+                    this.setCachedData('departments_cache', defaults);
+                    return defaults;
+                }
+                throw new Error(`Failed to fetch departments: ${response.statusText}`);
+            }
+            
+            const departments = await response.json();
+            this.setCachedData('departments_cache', departments);
+            return departments;
+        } catch (error) {
+            console.error('Error fetching departments:', error);
+            const cached = this.getCachedData('departments_cache');
+            return cached || this.getDefaultDepartments();
+        }
+    }
+
+    /**
+     * Get default departments (hardcoded)
+     */
+    getDefaultDepartments() {
+        return [
+            {
+                id: "home-kitchen",
+                name: "Home & Kitchen",
+                description: "Everything for your home and kitchen - from large appliances to small gadgets",
+                icon: "🏠",
+                slug: "home-kitchen",
+                image: "https://images.unsplash.com/photo-1556911220-bff31c812dba?w=800&h=600&fit=crop"
+            },
+            {
+                id: "pet-products",
+                name: "Pet Products",
+                description: "Complete pet care solutions - food, health products, toys and accessories",
+                icon: "🐾",
+                slug: "pet-products",
+                image: "https://images.unsplash.com/photo-1450778869180-41d0601e046e?w=800&h=600&fit=crop"
+            }
+        ];
+    }
+
+    /**
+     * Fetch all products from Azure Blob Storage or local file
      */
     async fetchProducts() {
         console.log('[Storage] Fetching products...');
@@ -239,7 +311,11 @@ class StorageService {
         }
 
         try {
-            const url = AZURE_CONFIG.getBlobUrl(AZURE_CONFIG.dataContainerName, this.productsFileName);
+            // Use local file if flag is set
+            const url = this.useLocalFiles ? 
+                this.productsFileName : 
+                AZURE_CONFIG.getBlobUrl(AZURE_CONFIG.dataContainerName, this.productsFileName);
+            
             console.log('[Storage] Products URL:', url);
             const response = await fetch(url);
             console.log('[Storage] Products response status:', response.status);

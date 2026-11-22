@@ -1,7 +1,7 @@
 // Azure Storage Configuration
 const AZURE_CONFIG = {
     // Your Azure Storage account name
-    storageAccountName: 'onlinestore5521',
+    storageAccountName: 'allshopwholesale',
     
     // Container name for product data (JSON files)
     dataContainerName: 'product-data',
@@ -11,7 +11,7 @@ const AZURE_CONFIG = {
     
     // Read-only SAS token for public storefront
     // Generate with: Read + List permissions only
-    readOnlySasToken: 'se=2027-01-12T15%3A03%3A35Z&sp=rl&spr=https&sv=2022-11-02&ss=b&srt=sco&sig=l5YFGgkhj3YCycju0rHpnvHfAB2Zd8y5tCqRCwFggh0%3D',
+    readOnlySasToken: 'se=2027-01-15T17%3A08%3A59Z&sp=rl&spr=https&sv=2022-11-02&ss=b&srt=sco&sig=pnQhiSDpjrjRfHmp7SSZ/cSWvJRzY%2By%2BvY1zu/Eoyps%3D',
     
     // Base URL for blob storage
     get storageUrl() {
@@ -37,9 +37,7 @@ const MSAL_CONFIG = {
     auth: {
         clientId: '5ad34e8e-91ea-4264-bfdb-0f71d1fb5258', // From App Registration
         authority: 'https://login.microsoftonline.com/7155ba15-8532-4d67-8c0b-dce23ad3c48f',
-        redirectUri: window.location.hostname === 'localhost' ? 
-            'http://localhost:8000/admin.html' : 
-            'https://aberr901.github.io/online-store/admin.html'
+        redirectUri: window.location.origin + window.location.pathname  // Strip hash and query
     },
     cache: {
         cacheLocation: 'sessionStorage',

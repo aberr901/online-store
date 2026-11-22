@@ -1,0 +1,18 @@
+[
+  {
+    "id": "home-kitchen",
+    "name": "Home & Kitchen",
+    "description": "Everything for your home and kitchen - from large appliances to small gadgets",
+    "icon": "🏠",
+    "slug": "home-kitchen",
+    "image": "https://images.unsplash.com/photo-1556911220-bff31c812dba?w=800&h=600&fit=crop"
+  },
+  {
+    "id": "pet-products",
+    "name": "Pet Products",
+    "description": "Complete pet care solutions - food, health products, toys and accessories",
+    "icon": "🐾",
+    "slug": "pet-products",
+    "image": "https://images.unsplash.com/photo-1450778869180-41d0601e046e?w=800&h=600&fit=crop"
+  }
+]

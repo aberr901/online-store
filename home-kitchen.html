@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home & Kitchen - ALL SHOP WHOLESALE</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/animations.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script>
+        window.CURRENT_DEPARTMENT = 'home-kitchen';
+    </script>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="container">
+                <a href="index.html" class="nav-brand">ALL SHOP WHOLESALE</a>
+                <div class="nav-links">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <div class="cart-icon" id="cart-icon">
+                        <i class="fas fa-shopping-bag"></i>
+                        <span class="cart-count">0</span>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <h2>Your Selection</h2>
+            <div class="close-cart" id="close-cart">&times;</div>
+        </div>
+        <div class="cart-body" id="cart-items">
+            <!-- Items added by JS -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total</span>
+                <span id="cart-total-price">$0.00</span>
+            </div>
+            <button class="btn btn-primary" id="checkout-btn" style="width: 100%; margin-top: 1rem;">Process Order</button>
+        </div>
+    </div>
+
+    <!-- Department Header -->
+    <section class="section-header-modern" style="margin-top: 150px;">
+        <h1 class="section-title-modern">Home & Kitchen</h1>
+        <p style="color: var(--color-text-muted); font-size: 1.2rem;">Elevate your living space with our curated collection.</p>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products-section">
+        <div class="container">
+            <!-- Filters -->
+            <div class="filters-bar">
+                 <div class="filter-group">
+                    <label>Sort By</label>
+                    <select id="sort-select" class="filter-select">
+                        <option value="default">Featured</option>
+                        <option value="price-asc">Price: Low to High</option>
+                        <option value="price-desc">Price: High to Low</option>
+                    </select>
+                 </div>
+                 <div class="filter-group">
+                    <input type="text" id="search-input" class="search-input" placeholder="Search collection...">
+                 </div>
+            </div>
+
+            <!-- Grid -->
+            <div id="products-grid" class="products-grid">
+                <div class="loading-spinner">Loading collection...</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="background: var(--color-bg-secondary); padding: 4rem 0; margin-top: 4rem; text-align: center;">
+        <div class="container">
+            <div style="font-family: var(--font-heading); font-size: 1.5rem; margin-bottom: 1rem;">ALL SHOP WHOLESALE</div>
+            <p style="color: var(--color-text-muted);">&copy; 2026 All Shop Wholesale. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="scripts/config.js"></script>
+    <script src="scripts/storage.js"></script>
+    <script src="scripts/notifications.js"></script>
+    <script src="scripts/cart.js"></script>
+    <script src="scripts/virtual-scroller.js"></script>
+    <script src="scripts/products-enhanced.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize products
+            if (typeof initProductsWithBrands === 'function') {
+                initProductsWithBrands();
+            }
+
+            // Cart Sidebar Toggles
+            const cartIcon = document.getElementById('cart-icon');
+            const cartSidebar = document.getElementById('cart-sidebar');
+            const closeCart = document.getElementById('close-cart');
+
+            function openCart() {
+                cartSidebar.classList.add('open');
+            }
+
+            function closeCartSidebar() {
+                cartSidebar.classList.remove('open');
+            }
+
+            if(cartIcon) cartIcon.addEventListener('click', openCart);
+            if(closeCart) closeCart.addEventListener('click', closeCartSidebar);
+
+            // Close on click outside (optional)
+            document.addEventListener('click', (e) => {
+                if (cartSidebar.classList.contains('open') && 
+                    !cartSidebar.contains(e.target) && 
+                    !cartIcon.contains(e.target)) {
+                    closeCartSidebar();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

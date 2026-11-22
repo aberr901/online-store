@@ -1,0 +1,141 @@
+[
+  {
+    "id": "brand_kitchenaid",
+    "name": "KitchenAid",
+    "logoUrl": "https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=200&h=100&fit=crop",
+    "departmentIds": ["home-kitchen"]
+  },
+  {
+    "id": "brand_ninja",
+    "name": "Ninja",
+    "logoUrl": "https://images.unsplash.com/photo-1556909172-54557c7e4fb7?w=200&h=100&fit=crop",
+    "departmentIds": ["home-kitchen"]
+  },
+  {
+    "id": "brand_instantpot",
+    "name": "Instant Pot",
+    "logoUrl": "https://images.unsplash.com/photo-1556911220-bff31c812dba?w=200&h=100&fit=crop",
+    "departmentIds": ["home-kitchen"]
+  },
+  {
+    "id": "brand_cuisinart",
+    "name": "Cuisinart",
+    "logoUrl": "https://images.unsplash.com/photo-1556909172-54557c7e4fb7?w=200&h=100&fit=crop",
+    "departmentIds": ["home-kitchen"]
+  },
+  {
+    "id": "brand_keurig",
+    "name": "Keurig",
+    "logoUrl": "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=200&h=100&fit=crop",
+    "departmentIds": ["home-kitchen"]
+  },
+  {
+    "id": "brand_dyson",
+    "name": "Dyson",
+    "logoUrl": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=200&h=100&fit=crop",
+    "departmentIds": ["home-kitchen"]
+  },
+  {
+    "id": "brand_irobot",
+    "name": "iRobot",
+    "logoUrl": "https://images.unsplash.com/photo-1558617371-1a2d0b3b1179?w=200&h=100&fit=crop",
+    "departmentIds": ["home-kitchen"]
+  },
+  {
+    "id": "brand_shark",
+    "name": "Shark",
+    "logoUrl": "https://images.unsplash.com/photo-1563453392212-326f5e854473?w=200&h=100&fit=crop",
+    "departmentIds": ["home-kitchen"]
+  },
+  {
+    "id": "brand_philips",
+    "name": "Philips",
+    "logoUrl": "https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=200&h=100&fit=crop",
+    "departmentIds": ["home-kitchen"]
+  },
+  {
+    "id": "brand_honeywell",
+    "name": "Honeywell",
+    "logoUrl": "https://images.unsplash.com/photo-1545259741-2ea3ebf61fa3?w=200&h=100&fit=crop",
+    "departmentIds": ["home-kitchen"]
+  },
+  {
+    "id": "brand_breville",
+    "name": "Breville",
+    "logoUrl": "https://images.unsplash.com/photo-1556742044-3c52d6e88c62?w=200&h=100&fit=crop",
+    "departmentIds": ["home-kitchen"]
+  },
+  {
+    "id": "brand_samsung",
+    "name": "Samsung",
+    "logoUrl": "https://images.unsplash.com/photo-1592838064575-70ed626d3a0e?w=200&h=100&fit=crop",
+    "departmentIds": ["home-kitchen"]
+  },
+  {
+    "id": "brand_vitamix",
+    "name": "Vitamix",
+    "logoUrl": "https://images.unsplash.com/photo-1570222094114-d054a817e56b?w=200&h=100&fit=crop",
+    "departmentIds": ["home-kitchen"]
+  },
+  {
+    "id": "brand_lecreuset",
+    "name": "Le Creuset",
+    "logoUrl": "https://images.unsplash.com/photo-1556911220-bff31c812dba?w=200&h=100&fit=crop",
+    "departmentIds": ["home-kitchen"]
+  },
+  {
+    "id": "brand_allclad",
+    "name": "All-Clad",
+    "logoUrl": "https://images.unsplash.com/photo-1584990347449-39b5e57a2c44?w=200&h=100&fit=crop",
+    "departmentIds": ["home-kitchen"]
+  },
+  {
+    "id": "brand_oxo",
+    "name": "OXO",
+    "logoUrl": "https://images.unsplash.com/photo-1556911220-bff31c812dba?w=200&h=100&fit=crop",
+    "departmentIds": ["home-kitchen"]
+  },
+  {
+    "id": "brand_lodge",
+    "name": "Lodge",
+    "logoUrl": "https://images.unsplash.com/photo-1556911220-bff31c812dba?w=200&h=100&fit=crop",
+    "departmentIds": ["home-kitchen"]
+  },
+  {
+    "id": "brand_bosch",
+    "name": "Bosch",
+    "logoUrl": "https://images.unsplash.com/photo-1585659722983-3a675dabf23d?w=200&h=100&fit=crop",
+    "departmentIds": ["home-kitchen"]
+  },
+  {
+    "id": "brand_ge",
+    "name": "GE",
+    "logoUrl": "https://images.unsplash.com/photo-1585659722983-3a675dabf23d?w=200&h=100&fit=crop",
+    "departmentIds": ["home-kitchen"]
+  },
+  {
+    "id": "brand_purina",
+    "name": "Purina",
+    "logoUrl": "https://images.unsplash.com/photo-1589924691995-400dc9ecc119?w=200&h=100&fit=crop",
+    "departmentIds": ["pet-products"]
+  },
+  {
+    "id": "brand_kong",
+    "name": "KONG",
+    "logoUrl": "https://images.unsplash.com/photo-1601758228041-f3b2795255f1?w=200&h=100&fit=crop",
+    "departmentIds": ["pet-products"]
+  },
+  {
+    "id": "brand_royalcanin",
+    "name": "Royal Canin",
+    "logoUrl": "https://images.unsplash.com/photo-1589924691995-400dc9ecc119?w=200&h=100&fit=crop",
+    "departmentIds": ["pet-products"]
+  },
+  {
+    "id": "brand_hillspet",
+    "name": "Hill's Pet",
+    "logoUrl": "https://images.unsplash.com/photo-1589924691995-400dc9ecc119?w=200&h=100&fit=crop",
+    "departmentIds": ["pet-products"]
+  }
+]
+
